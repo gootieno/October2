@@ -10,6 +10,14 @@ button {
     cursor: pointer;
 }
 
+#first {
+    border: 2px solid red;
+}
+
+[name="hovered"]{
+    border: 2px solid orange;
+}
+
 button:hover {
     background-color: white;
     color: #97caec;
