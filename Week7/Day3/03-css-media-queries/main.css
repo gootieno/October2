@@ -82,6 +82,12 @@ header {
     justify-content: center;
 }
 
+@media screen and (min-width: 1000px) and (max-width: 1200px){
+    header {
+        border: 2px solid red;
+    }
+}
+
 /* ----- Phase 1 - Moderate Screen ----- */
 
 /* Your code here */
