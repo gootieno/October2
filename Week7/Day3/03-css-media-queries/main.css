@@ -82,22 +82,65 @@ header {
     justify-content: center;
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1200px){
+/* @media screen and (min-width: 1000px) and (max-width: 1200px){
     header {
         border: 2px solid red;
     }
-}
+} */
 
 /* ----- Phase 1 - Moderate Screen ----- */
 
 /* Your code here */
+@media screen and (min-width: 821px){
+    .content {
+        flex-direction: row;
+    }
+}
 
 /* ----- Phase 1 - Wide Screen ----- */
 
 /* Your code here */
+@media screen and (min-width: 1220px){
+    .page {
+        flex-direction: row;
+    }
+}
 
 /* ===== PRINTING ===== */
 
 /* Phase 2 */
 
 /* Your code here */
+/* @media print {
+    .image-box, header, .sidebar {
+        display: none;
+    }
+
+    .story-box {
+        padding: 0;
+        border-radius: none;
+        background-color: white;
+        filter: none;
+    }
+} */
+
+@media print {
+    .story-box {
+      background-color: #ffffff;
+      filter: none;
+      border: none;
+    }
+    header,
+    .sidebar {
+      display: none;
+    }
+
+    .image-box {
+        display: inline-block;
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        height: 100px;
+        width: 100px;
+    }
+  }
