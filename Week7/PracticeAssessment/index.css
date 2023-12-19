@@ -7,6 +7,10 @@
     box-sizing: border-box;
 }
 
+/* button {
+    cursor:pointer;
+} */
+
 :root {
     --app-background: #eeedf2;
     --app-text: #6f7287;
