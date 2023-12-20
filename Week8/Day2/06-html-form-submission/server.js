@@ -1,5 +1,5 @@
 const http = require("http");
-const fs = require('fs');
+const fs = require("fs");
 
 function getContentType(fileName) {
   const ext = fileName.split(".")[1];
@@ -25,7 +25,7 @@ let dog;
 const server = http.createServer((req, res) => {
   console.log(`${req.method} ${req.url}`);
 
-  if (req.method === "GET" && req.url.startsWith('/assets')) {
+  if (req.method === "GET" && req.url.startsWith("/assets")) {
     const assetPath = req.url.split("/assets")[1];
     try {
       const resBody = fs.readFileSync("./assets" + assetPath);
@@ -42,10 +42,13 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === "GET" && req.url === "/") {
-    console.log('Created cat and dog info:', { cat, dog });
-    let htmlPage = fs.readFileSync("./views/index.html", 'utf-8');
+    console.log("Created cat and dog info:", { cat, dog });
+    let htmlPage = fs.readFileSync("./views/index.html", "utf-8");
     const resBody = htmlPage
-      .replace(/#{cat}/g, cat ? `
+      .replace(
+        /#{cat}/g,
+        cat
+          ? `
         <div>
           <h2>Created Cat:</h2>
           <h3>Name: ${cat.name}</h3>
@@ -53,16 +56,23 @@ const server = http.createServer((req, res) => {
           <div>Size: ${cat.size} lbs</div>
           <div>Description: ${cat.description}</div>
         </div>
-      ` : "<div>No cat created yet!</div>")
-      .replace(/#{dog}/g, dog ? `
+      `
+          : "<div>No cat created yet!</div>"
+      )
+      .replace(
+        /#{dog}/g,
+        dog
+          ? `
         <div>
           <h2>Created Dog:</h2>
           <h3>Name: ${dog.name}</h3>
           <div>Pattern: ${dog.color}</div>
-          <div>Size: ${dog.age} years old</div>
+          <div>Age: ${dog.age} years old</div>
           <div>Description: ${dog.description}</div>
         </div>
-      ` : "<div>No dog created yet!</div>");
+      `
+          : "<div>No dog created yet!</div>"
+      );
     res.statusCode = 200;
     res.setHeader("Content-Type", "text/html");
     res.end(resBody);
@@ -108,6 +118,33 @@ const server = http.createServer((req, res) => {
 
     // Your code here
 
+    // POST /cat
+    if (req.method === "POST" && req.url === "/cat") {
+      console.log(req.body);
+
+      // create new Cat saved to cat var with req body info
+      cat = new Cat(req.body);
+      // set status code
+      res.statusCode = 302;
+      // set header
+      res.setHeader("Location", "/");
+      // end response
+      return res.end();
+    }
+
+    // POST /dog
+    if (req.method === "POST" && req.url === "/dog") {
+      console.log(req.body);
+
+      // create new Cat saved to cat var with req body info
+      cat = new Dog(req.body);
+      // set status code
+      res.statusCode = 302;
+      // set header
+      res.setHeader("Location", "/");
+      // end response
+      return res.end();
+    }
     res.statusCode = 404;
     res.end("Page Not Found");
     return;
