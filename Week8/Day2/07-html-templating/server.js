@@ -1,6 +1,7 @@
 const http = require('http');
 const fs = require("fs");
 
+
 const dogs = [
   {
     dogId: 1,
@@ -89,6 +90,19 @@ const server = http.createServer((req, res) => {
     // Phase 1: GET /dogs
     if (req.method === 'GET' && req.url === '/dogs') {
       // Your code here
+
+      // fs to read html page
+
+      // let dogsList = ""
+      // loop through dogs add <li>name</li> to dogsList
+
+      // .replace on the page with list of li and save to res body
+
+      // status code
+
+      // set header
+
+      // return body & end res
     }
 
     // Phase 2: GET /dogs/new
@@ -103,6 +117,15 @@ const server = http.createServer((req, res) => {
         const dogId = urlParts[2];
         const dog = dogs.find(dog => dog.dogId === Number(dogId));
         // Your code here
+
+        // get html page 
+        // replace name and age with info from dog
+
+        // status code
+
+        // set header
+
+        // return body end res
       }
     }
 
