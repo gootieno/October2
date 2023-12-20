@@ -1,21 +1,13 @@
 export function getAllDogs() {
   // Your code here
   const url = "/dogs";
-  const headers = { "Content-Type": "Request body's Content-Type" };
-  // Use the URLSearchParams API to format your body as shown below
-  const body = new URLSearchParams({
-    key: "value",
-  });
-
-  const options = {
-    method: "GET",
-  };
 
   return fetch(url);
 }
 
 export function getDogNumberTwo() {
   // Your code here
+  return fetch("/dogs/2");
 }
 
 export function postNewDog() {
@@ -39,8 +31,17 @@ export function postNewDog() {
 
 export function postNewDogV2(name, age) {
   // Your code here
+  return fetch("/dogs", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({ name, age }),
+  });
 }
 
 export function deleteDog(id) {
   // Your code here
+  return fetch(`/dogs/${id}/delete`, {
+    method: "POST",
+    headers: { AUTH: "ckyut5wau0000jyv5bsrud90y" },
+  });
 }
