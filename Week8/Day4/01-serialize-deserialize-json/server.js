@@ -14,15 +14,20 @@ const server = http.createServer((req, res) => {
     // Parse the body of the request as x-www-form-urlencoded if Content-Type
       // header is x-www-form-urlencoded
     if (reqBody) {
-      req.body = reqBody
-        .split("&")
-        .map((keyValuePair) => keyValuePair.split("="))
-        .map(([key, value]) => [key, value.replace(/\+/g, " ")])
-        .map(([key, value]) => [key, decodeURIComponent(value)])
-        .reduce((acc, [key, value]) => {
-          acc[key] = value;
-          return acc;
-        }, {});
+      // if (req.headers['content-type'] === 'application/json') {
+      //   req.body = JSON.parse(reqBody);
+      // }
+      if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+        req.body = reqBody
+          .split("&")
+          .map((keyValuePair) => keyValuePair.split("="))
+          .map(([key, value]) => [key, value.replace(/\+/g, " ")])
+          .map(([key, value]) => [key, decodeURIComponent(value)])
+          .reduce((acc, [key, value]) => {
+            acc[key] = value;
+            return acc;
+          }, {});
+      }
 
       // Log the body of the request to the terminal
       console.log(req.body);
@@ -31,7 +36,10 @@ const server = http.createServer((req, res) => {
     const resBody = {
       "Hello": "World!"
     };
-
+    res.statusCode = 200;
+    res.setHeader("Content-Type", 'application/json');
+    res.write(JSON.stringify(resBody));
+    return res.end();
     // Return the `resBody` object as JSON in the body of the response
   });
 });

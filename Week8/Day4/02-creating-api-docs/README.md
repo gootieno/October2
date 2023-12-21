@@ -44,6 +44,7 @@ For example, to edit a specific post, the API endpoint could be
 `PATCH /posts/:postId`
 
 - Get all the posts
+GET /posts
 - Create a new post
 - Edit a post
 - Create a new user
