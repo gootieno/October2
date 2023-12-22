@@ -1,0 +1,26 @@
+#form-container, #comments-container, #new-comment-form-container {
+    margin: 40px;
+   
+}
+
+form, #comments-container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: 5px;
+    box-shadow:0px 0px 3px gray;
+    border-radius: 3px;
+    padding: 5px 5px 10px 5px;
+}
+
+form > input {
+    width: 60%;
+}
+
+form > button {
+    width: fit-content;
+}
+
+p {
+    margin: 0;
+}
