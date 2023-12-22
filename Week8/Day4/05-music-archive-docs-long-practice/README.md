@@ -81,10 +81,11 @@ Request components:
 
 Response components:
 
-- Status code: 200
+- Status Code: 200
 - Headers:
-    - Content-Type: application/json
+  - Content-Type: application/json
 - Body: information about all the artists
+
   ```json
   [
     {
@@ -94,259 +95,468 @@ Response components:
   ]
   ```
 
-Test this in Postman or by using `fetch` in the browser.
-
 ### Get a specific artist's details based on artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /artists/:artistId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about a specific artist and their albums
+
+  ```json
+  {
+    "artistId": 1,
+    "name": "Red Hot Chili Peppers",
+    "albums": [
+      {
+        "albumId": 1,
+        "name": "Stadium Arcadium"
+      }
+    ]
+  }
+  ```
 
 ### Add an artist
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: POST
+- URL: /artists
+  - Content-Type: application/json
+- Body: information about the artist to be created
+
+  ```json
+  {
+    "name": "Led Zeppelin"
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 201
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the newly created artist
+
+  ```json
+  {
+    "artistId": 2,
+    "name": "Led Zeppelin"
+  }
+  ```
 
 ### Edit a specified artist by artistId
 
 Request components:
 
-- Method:
-- URL:
+- Method: PUT or PATCH
+- URL: /artists/:artistId
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the artist to be editted
+
+  ```json
+  {
+    "name": "Led Zeppelin"
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the editted artist
+
+  ```json
+  {
+    "artistId": 2,
+    "name": "Led Zeppelin"
+  }
+  ```
 
 ### Delete a specified artist by artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: DELETE
+- URL: /artists/:artistId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: message of success
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
 ### Get all albums of a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /artists/:artistId/albums
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about all the albums of a specific artist
+
+  ```json
+  [
+    {
+      "albumId": 1,
+      "name": "Stadium Arcadium",
+      "artistId": 1
+    }
+  ]
+  ```
 
 ### Get a specific album's details based on albumId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /albums/:albumId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about a specific album and their songs
+
+  ```json
+  {
+    "albumId": 1,
+    "name": "Stadium Arcadium",
+    "artistId": 1,
+    "artist": {
+      "artistId": 1,
+      "name": "Red Hot Chili Peppers"
+    },
+    "songs": [
+      {
+        "songId": 1,
+        "name": "Dani California",
+        "trackNumber": 1
+      }
+    ]
+  }
+  ```
 
 ### Add an album to a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
+- Method: POST
+- URL: /artist/:artistId/albums
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the album to be created
+
+  ```json
+  {
+    "name": "Stadium Arcadium"
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 201
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the newly created album
+
+  ```json
+  {
+    "albumId": 1,
+    "name": "Stadium Arcadium",
+    "artistId": 1
+  }
+  ```
 
 ### Edit a specified album by albumId
 
 Request components:
 
-- Method:
-- URL:
+- Method: PUT or PATCH
+- URL: /albums/:albumId
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the album to be editted
+
+  ```json
+  {
+    "name": "Stadium Arcadium"
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the editted album
+
+  ```json
+  {
+    "albumId": 1,
+    "name": "Stadium Arcadium",
+    "artistId": 1
+  }
+  ```
 
 ### Delete a specified album by albumId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: DELETE
+- URL: /albums/:albumId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: success message
+
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
 
 ### Get all songs of a specific artist based on artistId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /artists/:artistId/songs
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about all the songs of a specific artist
+
+  ```json
+  [
+    {
+      "name": "Dani California",
+      "lyrics": "...",
+      "trackNumber": 1,
+      "songId": 1,
+      "albumId": 1
+    }
+  ]
+  ```
 
 ### Get all songs of a specific album based on albumId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /albums/:albumId/songs
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about all the songs of a specific album
+
+  ```json
+  [
+    {
+      "name": "Dani California",
+      "lyrics": "...",
+      "trackNumber": 1,
+      "songId": 1,
+      "albumId": 1
+    }
+  ]
+  ```
 
 ### Get all songs of a specified trackNumber
 
-**Note: This one is meant to be a little more challenging, but should still
-follow a similar pattern to those above.**
-
-Can you see a pattern between this endpoint and the two previous endpoints?
-
-Hint: Think of how you solved getting all songs by a specific artist and by a
-specific album. What is resource that you wanted to get back for those
-endpoints? What information was that resource constrained by for each of those
-endpoints? Now think about getting all songs by a specific `trackNumber`.
-What is the resource you want to get? What information is the resource
-constrained by for this endpoint?
-
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /trackNumbers/:trackNumber/songs
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about all the songs that have a specified trackNumber
+
+  ```json
+  [
+    {
+      "name": "Dani California",
+      "lyrics": "...",
+      "trackNumber": 1,
+      "songId": 1,
+      "albumId": 1
+    }
+  ]
+  ```
 
 ### Get a specific song's details based on songId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: GET
+- URL: /songs/:songId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about a specific song
+
+  ```json
+  {
+    "songId": 1,
+    "name": "Dani California",
+    "trackNumber": 1,
+    "lyrics": "...",
+    "albumId": 1,
+    "artist": {
+      "artistId": 1,
+      "name": "Red Hot Chili Peppers"
+    },
+    "album": {
+      "albumId": 1,
+      "name": "Stadium Arcadium",
+      "artistId": 1
+    }
+  }
+  ```
 
 ### Add a song to a specific album based on albumId
 
 Request components:
 
-- Method:
-- URL:
+- Method: POST
+- URL: /albums/:albumId/songs
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the song to be created
+
+  ```json
+  {
+    "name": "Dani California",
+    "trackNumber": 1,
+    "lyrics": "..."
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 201
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the newly created song
+
+  ```json
+  {
+    "songId": 1,
+    "name": "Dani California",
+    "trackNumber": 1,
+    "lyrics": "...",
+    "albumId": 1
+  }
+  ```
 
 ### Edit a specified song by songId
 
 Request components:
 
-- Method:
-- URL:
+- Method: PUT or PATCH
+- URL: /songs/:songId
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the song to be editted
+
+  ```json
+  {
+    "name": "Dani California",
+    "trackNumber": 1,
+    "lyrics": "..."
+  }
+  ```
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: information about the editted song
+
+  ```json
+  {
+    "songId": 1,
+    "name": "Dani California",
+    "trackNumber": 1,
+    "lyrics": "...",
+    "albumId": 1
+  }
+  ```
 
 ### Delete a specified song by songId
 
 Request components:
 
-- Method:
-- URL:
-- Headers:
-- Body:
+- Method: DELETE
+- URL: /songs/:songId
+- Headers: none
+- Body: none
 
 Response components:
 
-- Status code:
+- Status Code: 200
 - Headers:
-- Body:
+  - Content-Type: application/json
+- Body: success message
 
-[http://localhost:5000]: http://localhost:5000
-[starter]: https://github.com/appacademy/practice-for-week-08-music-archive-docs-long-practice
+  ```json
+  {
+    "message": "Successfully deleted"
+  }
+  ```
