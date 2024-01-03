@@ -1,32 +1,34 @@
-class Game {
+import { getIndex } from "./utilities.js";
+import { mrPotatoHeadQuotes as quotes } from "./quotes/mrPotatoHead.js";
+import mrsQuotes from "./quotes/mrsPotatoHead.js";
 
+export class Game {
   start() {
-
-    document.getElementById('hello').addEventListener('click', () => {
+    document.getElementById("hello").addEventListener("click", () => {
       const index = getIndex();
-      const messageContainer = document.getElementById('message');
+      const messageContainer = document.getElementById("message");
       if (index === 1) {
-        messageContainer.innerText = mrPotatoHeadQuotes['hello'];
+        messageContainer.innerText = quotes["hello"];
       } else {
-        messageContainer.innerText = mrsPotatoHeadQuotes['hello'];
+        messageContainer.innerText = mrsQuotes["hello"];
       }
     });
 
-    document.getElementById('bye').addEventListener('click', () => {
+    document.getElementById("bye").addEventListener("click", () => {
       const index = getIndex();
-      const messageContainer = document.getElementById('message');
+      const messageContainer = document.getElementById("message");
       if (index === 1) {
-        messageContainer.innerText = mrPotatoHeadQuotes['bye'];
+        messageContainer.innerText = quotes["bye"];
       } else {
-        messageContainer.innerText = mrsPotatoHeadQuotes['bye'];
+        messageContainer.innerText = mrsQuotes["bye"];
       }
     });
 
-    document.getElementById('swap').addEventListener('click', () => {
+    document.getElementById("swap").addEventListener("click", () => {
       const index = getIndex();
-      const image = document.getElementById('image');
-      const messageContainer = document.getElementById('message');
-      const wrapper = document.getElementById('wrapper');
+      const image = document.getElementById("image");
+      const messageContainer = document.getElementById("message");
+      const wrapper = document.getElementById("wrapper");
       if (index === 1) {
         image.src = "./assets/images/potatohead2.png";
         wrapper.dataset.index = "2";
@@ -35,6 +37,6 @@ class Game {
         wrapper.dataset.index = "1";
       }
       messageContainer.innerText = "";
-    })
+    });
   }
 }
