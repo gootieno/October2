@@ -1,14 +1,18 @@
 /****************************** ADD DOG BUTTON ******************************/
 const add = document.getElementById("add");
 add.addEventListener("click", async () => {
-    try {
-        const res = await fetch("https://dog.ceo/api/breeds/image/random")
-        const data = await res.json();
-        console.log('data ', data)
-        const url = data.message; // URL of new dog image
+  try {
+    const res = await fetch("https://dog.ceo/api/breeds/image/random");
+    const data = await res.json();
+    console.log("data ", data);
+    const url = data.message; // URL of new dog image
 
-        /*--------------- Get breed (Hint: Parse from URL) ---------------- */
-        /* 
+    const urlParts = url.split("/");
+    console.log("url parts ", urlParts);
+
+    const breed = urlParts[4];
+    /*--------------- Get breed (Hint: Parse from URL) ---------------- */
+    /* 
         <li>
             <figure>
                 <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg" />
@@ -20,40 +24,67 @@ add.addEventListener("click", async () => {
 
         give elements attributes/data 
 
-        append element to a live parent
+        append elements
         */
 
-        // Your code here
+    // Your code here
+    const listContainer = document.querySelector("ul");
 
-        /*------------ Create new dog card with the url above ------------- */
-        /* (use the HTML structure for the current dog image in the index.html
+    const listItem = document.createElement("li");
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const figCaption = document.createElement("figcaption");
+
+    listItem.style.border = "2px solid red";
+
+    img.setAttribute("src", url);
+    figCaption.innerText = breed;
+
+    figure.append(img, figCaption);
+    listItem.appendChild(figure);
+
+    console.log("list item ", listItem);
+    listContainer.appendChild(listItem);
+    /*------------ Create new dog card with the url above ------------- */
+    /* (use the HTML structure for the current dog image in the index.html
             file to create a new image with the url) */
-        // Your code here
+    // Your code here
 
-        /* Add the new dog card as a child to the ul in the .gallery element */
-        // Your code here
-
-    } catch (e) {
-        console.log("Couldn't fetch dog :(")
-    }
+    /* Add the new dog card as a child to the ul in the .gallery element */
+    // Your code here
+  } catch (e) {
+    console.log("Couldn't fetch dog :(");
+  }
 });
 
 /************************** REMOVE FIRST DOG BUTTON **************************/
 const removeFirst = document.getElementById("remove-first");
 removeFirst.addEventListener("click", () => {
-    /*-------------------- Select the first dog card --------------------- */
-    // Your code here
-
-    /*-------------------- Remove the first dog card --------------------- */
-    // Your code here
+  /*-------------------- Select the first dog card --------------------- */
+  // Your code here
+  const firstDogCard = document.querySelector(".gallery ul li");
+  /*-------------------- Remove the first dog card --------------------- */
+  // Your code here
+  if (firstDogCard) firstDogCard.remove();
 });
 
 /************************** REMOVE LAST DOG BUTTON ***************************/
 const removeLast = document.getElementById("remove-last");
 removeLast.addEventListener("click", () => {
-    /*-------------------- Select the last dog card ----------------------- */
-    // Your code here
+  /*-------------------- Select the last dog card ----------------------- */
+  // Your code here
+  const dogs = document.querySelectorAll("li");
+  const lastDog = dogs[dogs.length - 1];
+  /*-------------------- Remove the last dog card ----------------------- */
+  // Your code here
+  if (lastDog) lastDog.remove();
+});
 
-    /*-------------------- Remove the last dog card ----------------------- */
-    // Your code here
+const themeButton = document.getElementById("theme-button");
+themeButton.addEventListener("click", () => {
+  if (document.body.className.includes("dark-mode")) {
+    document.body.classList.remove("dark-mode");
+  } else {
+    document.body.classList.add("dark-mode");
+  }
 });
