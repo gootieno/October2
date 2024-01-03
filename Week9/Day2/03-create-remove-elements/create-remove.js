@@ -4,10 +4,25 @@ add.addEventListener("click", async () => {
     try {
         const res = await fetch("https://dog.ceo/api/breeds/image/random")
         const data = await res.json();
-
+        console.log('data ', data)
         const url = data.message; // URL of new dog image
 
         /*--------------- Get breed (Hint: Parse from URL) ---------------- */
+        /* 
+        <li>
+            <figure>
+                <img src="https://images.dog.ceo/breeds/hound-afghan/n02088094_1007.jpg" />
+                <figcaption>hound-afghan</figcaption>
+            </figure>
+        </li>
+
+        create/select elements
+
+        give elements attributes/data 
+
+        append element to a live parent
+        */
+
         // Your code here
 
         /*------------ Create new dog card with the url above ------------- */
