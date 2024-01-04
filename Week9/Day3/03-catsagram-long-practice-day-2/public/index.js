@@ -1,4 +1,5 @@
 import { createMainContent } from './main.js';
+import { votesContainer } from './votes.js';
 
 const initializePage = () => {
     // Create container
@@ -14,4 +15,5 @@ const initializePage = () => {
 window.onload = () => {
     initializePage();
     createMainContent();
+    votesContainer()
 };
